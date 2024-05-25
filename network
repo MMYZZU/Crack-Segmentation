@@ -379,7 +379,7 @@ class MobileViTBlock(nn.Layer):
         # Global representations
         n, c, h, w = x.shape
 
-        x = x.transpose((0,3,1,2)).reshape((n,self.ph * self.pw,-1,c))#unflod
+        x = x.transpose((0,2,3,1)).reshape((n,self.ph * self.pw,-1,c))#unflod
         x = self.transformer(x)
         x = x.reshape((n,h,-1,c)).transpose((0,3,1,2))#flod
 
